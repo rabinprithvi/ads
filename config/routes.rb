@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  get 'plans/index'
-
-  get 'plans/create'
-
-  get 'plans/edit'
-
-  get 'plans/update'
-
-  get 'plans/destroy'
 
   resources :visitors, only: [:index, :create, :destroy], defaults: {format: :json}
   resources :plans, only: [:index, :create, :edit, :update, :destroy], defaults: {format: :json}

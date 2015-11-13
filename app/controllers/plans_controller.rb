@@ -1,4 +1,5 @@
 class PlansController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:create, :destroy, :update]
   respond_to :json
   def index
     respond_to do |format|
@@ -12,9 +13,12 @@ class PlansController < ApplicationController
   end
 
   def edit
+    respond_with Plan.find(params[:id])
   end
 
   def update
+    plan = Plan.find(params[:id])
+    respond_with plan.update_attributes(plan_params)
   end
 
   def destroy
