@@ -7,4 +7,11 @@ myApp.factory("Plan", function($resource) {
 
 myApp.controller("plansController", function($scope, Plan) {
   $scope.plans = Plan.index()
+
+  $scope.addPlan = function() {
+    plan = Plan.save($scope.newPlan)
+
+    $scope.plans.push(plan)
+    $scope.newPlan = {}
+  }
 })
