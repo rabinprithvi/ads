@@ -1,4 +1,4 @@
 class Plan < ActiveRecord::Base
-  has_many :features
-  accepts_nested_attributes_for :features,  allow_destroy: true
+  has_many :features,  dependent: :destroy
+  accepts_nested_attributes_for :features
 end
