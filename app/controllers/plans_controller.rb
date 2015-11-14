@@ -1,8 +1,12 @@
 class PlansController < ApplicationController
+  #skip_before_filter :verify_authenticity_token, :only => [:create, :destroy, :update]
   respond_to :json
 
   def index
-    render :json => Plan.all, :include => {:features => {:only => [:id, :name, :limit]}}, :except => [:created_at, :updated_at]
+    respond_to do |format|
+      format.json {render :json => Plan.all, :include => {:features => {:only => [:id, :name, :limit]}}, :except => [:created_at, :updated_at]}
+      format.html
+    end
   end
 
   def create
